@@ -1,0 +1,95 @@
+// ═══════════════════════════════════════════════════
+// Mock Blacklist Entries & Alert Records (Phase 4)
+// Watchlist matching and real-time alert simulation
+// ═══════════════════════════════════════════════════
+
+import type { BlacklistEntry, AlertRecord } from '@/types';
+
+export const mockBlacklistEntries: BlacklistEntry[] = [
+  {
+    id: 'bl-001',
+    plate_text: 'HR-26-CD-5678',
+    category: 'stolen',
+    priority: 'high',
+    reason: 'Reported stolen luxury SUV in Gurgaon',
+    valid_from: '2026-09-01T00:00:00Z',
+    valid_to: null,
+    is_active: true,
+    created_at: '2026-09-01T10:00:00Z',
+    updated_at: '2026-09-01T10:00:00Z',
+  },
+  {
+    id: 'bl-002',
+    plate_text: 'DL-03-IJ-7890',
+    category: 'wanted',
+    priority: 'critical',
+    reason: 'Vehicle associated with armed robbery investigation',
+    valid_from: '2026-09-15T00:00:00Z',
+    valid_to: null,
+    is_active: true,
+    created_at: '2026-09-15T14:30:00Z',
+    updated_at: '2026-09-15T14:30:00Z',
+  },
+  {
+    id: 'bl-003',
+    plate_text: 'UP-16-GH-3456',
+    category: 'flagged',
+    priority: 'medium',
+    reason: 'Unpaid commercial highway toll violations',
+    valid_from: '2026-09-20T00:00:00Z',
+    valid_to: null,
+    is_active: true,
+    created_at: '2026-09-20T09:15:00Z',
+    updated_at: '2026-09-20T09:15:00Z',
+  },
+];
+
+export const mockAlerts: AlertRecord[] = [
+  {
+    id: 'alt-001',
+    detection_event_id: 'det-103',
+    blacklist_entry_id: 'bl-001',
+    plate_text: 'HR-26-CD-5678',
+    camera_id: 'cam-001',
+    camera_name: 'India Gate Junction',
+    priority: 'high',
+    category: 'stolen',
+    reason: 'Reported stolen luxury SUV in Gurgaon',
+    timestamp: '2026-09-25T07:30:00Z',
+    lat: 28.6129,
+    lng: 77.2295,
+    acknowledged: false,
+  },
+  {
+    id: 'alt-002',
+    detection_event_id: 'det-302',
+    blacklist_entry_id: 'bl-002',
+    plate_text: 'DL-03-IJ-7890',
+    camera_id: 'cam-003',
+    camera_name: 'Karol Bagh Crossing',
+    priority: 'critical',
+    reason: 'Vehicle associated with armed robbery investigation',
+    category: 'wanted',
+    timestamp: '2026-09-25T10:00:00Z',
+    lat: 28.6519,
+    lng: 77.1905,
+    acknowledged: false,
+  },
+  {
+    id: 'alt-003',
+    detection_event_id: 'det-202',
+    blacklist_entry_id: 'bl-003',
+    plate_text: 'UP-16-GH-3456',
+    camera_id: 'cam-002',
+    camera_name: 'Connaught Place Circle',
+    priority: 'medium',
+    category: 'flagged',
+    reason: 'Unpaid commercial highway toll violations',
+    timestamp: '2026-09-25T08:30:00Z',
+    lat: 28.6315,
+    lng: 77.2167,
+    acknowledged: true,
+    acknowledged_by: 'Operator 04',
+    acknowledged_at: '2026-09-25T08:35:00Z',
+  },
+];

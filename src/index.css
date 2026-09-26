@@ -1,0 +1,180 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════
+   NERO Ultra-Premium Command Center Design System
+   Rich Aesthetics, Dark Mode, Glassmorphism, Neon Glows
+   ═══════════════════════════════════════════════════ */
+
+@theme {
+  /* ── Base palette ── */
+  --color-nero-bg: #000000;
+  --color-nero-surface: #0a0a0a;
+  --color-nero-surface-elevated: #121212;
+  --color-nero-surface-hover: #1a1a1a;
+  --color-nero-border: #1f1f1f;
+  --color-nero-border-light: #2c2c2c;
+
+  /* ── Text ── */
+  --color-nero-text-primary: #ffffff;
+  --color-nero-text-secondary: #a1a1aa;
+  --color-nero-text-muted: #71717a;
+
+  /* ── Accent (Electric Blue & Cyan) ── */
+  --color-nero-accent: #38bdf8;
+  --color-nero-accent-hover: #0284c7;
+  --color-nero-accent-glow: rgba(56, 189, 248, 0.25);
+  --color-nero-cyan: #22d3ee;
+
+  /* ── Semantic status colors ── */
+  --color-nero-online: #10b981;
+  --color-nero-offline: #f43f5e;
+  --color-nero-warning: #f59e0b;
+
+  /* ── Priority badges ── */
+  --color-nero-priority-low: #10b981;
+  --color-nero-priority-medium: #f59e0b;
+  --color-nero-priority-high: #f43f5e;
+  --color-nero-priority-critical: #e11d48;
+
+  /* ── Spacing & sizing ── */
+  --radius-nero-sm: 0.375rem;
+  --radius-nero-md: 0.625rem;
+  --radius-nero-lg: 0.875rem;
+  --radius-nero-xl: 1.25rem;
+
+  /* ── Font ── */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* ── Sidebar width ── */
+  --sidebar-width: 240px;
+  --sidebar-collapsed-width: 72px;
+}
+
+/* ── Global resets & Custom scrollbar ── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-nero-border-light) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-nero-border-light);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-nero-accent);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  background-color: var(--color-nero-bg);
+  color: var(--color-nero-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+}
+
+/* ── Glassmorphic card styling ── */
+.nero-card {
+  background: rgba(10, 10, 10, 0.9);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-nero-border);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nero-card:hover {
+  border-color: var(--color-nero-accent);
+  box-shadow: 0 12px 40px 0 rgba(56, 189, 248, 0.15);
+  transform: translateY(-2px);
+}
+
+/* ── Leaflet dark theme overrides ── */
+.leaflet-container {
+  background-color: #000000 !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+.leaflet-control-zoom a {
+  background-color: rgba(10, 10, 10, 0.9) !important;
+  color: var(--color-nero-text-primary) !important;
+  border-color: var(--color-nero-border) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background-color: var(--color-nero-surface-hover) !important;
+  color: var(--color-nero-accent) !important;
+}
+
+.leaflet-control-attribution {
+  background-color: rgba(0, 0, 0, 0.85) !important;
+  color: var(--color-nero-text-muted) !important;
+  font-size: 10px !important;
+  backdrop-filter: blur(4px);
+}
+
+.leaflet-control-attribution a {
+  color: var(--color-nero-accent) !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background-color: rgba(14, 14, 14, 0.95) !important;
+  color: var(--color-nero-text-primary) !important;
+  border-radius: var(--radius-nero-lg) !important;
+  border: 1px solid var(--color-nero-border-light) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 20px rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(12px) !important;
+}
+
+.leaflet-popup-tip {
+  background-color: rgba(14, 14, 14, 0.95) !important;
+}
+
+/* ── Glow animations ── */
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 0.4; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(1000%); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* ── Live status dots ── */
+.status-dot-online {
+  background-color: #10b981;
+  box-shadow: 0 0 10px #10b981;
+}
+
+.status-dot-offline {
+  background-color: #f43f5e;
+  box-shadow: 0 0 8px #f43f5e;
+}
