@@ -1,24 +1,25 @@
 // ═══════════════════════════════════════════════════
 // CameraMarker — Individual camera marker on the map
-// Colored by status (green/red/amber) per design.md
+// Colored by status (green/red) per design.md
+// Popup includes "View feed" button that navigates to /cameras
 // ═══════════════════════════════════════════════════
 
 import { Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
-import type { CameraFeed } from '@/types';
+import type { Camera } from '@/types/camera';
 import { StatusBadge } from '@/components/ui/StatusBadge';
+import { useNavigate } from 'react-router-dom';
 
 interface CameraMarkerProps {
-  camera: CameraFeed;
-  onClick?: (camera: CameraFeed) => void;
+  camera: Camera;
+  onClick?: (camera: Camera) => void;
 }
 
 /** Create a custom circle icon colored by camera status */
-function createCameraIcon(status: CameraFeed['status']): L.DivIcon {
-  const colorMap = {
+function createCameraIcon(status: Camera['status']): L.DivIcon {
+  const colorMap: Record<Camera['status'], string> = {
     online: '#22c55e',
     offline: '#ef4444',
-    maintenance: '#f59e0b',
   };
   const color = colorMap[status];
   const pulseClass = status === 'online' ? 'animation: pulse 2s infinite;' : '';
@@ -52,17 +53,18 @@ function createCameraIcon(status: CameraFeed['status']): L.DivIcon {
 
 export function CameraMarker({ camera, onClick }: CameraMarkerProps) {
   const icon = createCameraIcon(camera.status);
+  const navigate = useNavigate();
 
   return (
     <Marker
-      position={[camera.lat, camera.lng]}
+      position={[camera.latitude, camera.longitude]}
       icon={icon}
       eventHandlers={{
         click: () => onClick?.(camera),
       }}
     >
       <Popup>
-        <div className="min-w-[180px] space-y-2 p-1">
+        <div className="min-w-[200px] space-y-2.5 p-1">
           <div className="flex items-center justify-between gap-3">
             <h4 className="text-sm font-semibold text-nero-text-primary">
               {camera.name}
@@ -74,6 +76,15 @@ export function CameraMarker({ camera, onClick }: CameraMarkerProps) {
             <p>Zone: {camera.zone}</p>
             <p>Direction: {camera.direction}</p>
           </div>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              navigate('/cameras');
+            }}
+            className="w-full mt-1 rounded-lg bg-nero-accent/20 border border-nero-accent/40 px-3 py-1.5 text-xs font-semibold text-nero-accent hover:bg-nero-accent/30 transition-colors"
+          >
+            ▶ View feed
+          </button>
         </div>
       </Popup>
     </Marker>

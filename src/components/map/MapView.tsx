@@ -4,12 +4,12 @@
 // ═══════════════════════════════════════════════════
 
 import { MapContainer, TileLayer } from 'react-leaflet';
-import type { CameraFeed } from '@/types';
+import type { Camera } from '@/types/camera';
 import { CameraMarker } from './CameraMarker';
 
 interface MapViewProps {
-  cameras: CameraFeed[];
-  onCameraClick?: (camera: CameraFeed) => void;
+  cameras: Camera[];
+  onCameraClick?: (camera: Camera) => void;
   center?: [number, number];
   zoom?: number;
   className?: string;

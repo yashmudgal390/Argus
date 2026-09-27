@@ -3,10 +3,8 @@
 // Ultra-Premium UI with Glassmorphic Panels & Neon Glows
 // ═══════════════════════════════════════════════════
 
-import { useEffect, useState } from 'react';
-import type { CameraFeed } from '@/types';
-import { fetchCameras } from '@/lib/supabase';
-import { getCameraStatusCounts } from '@/data/mockCameras';
+import type { Camera } from '@/types/camera';
+import { useCameras } from '@/hooks/useCameras';
 import { MapView } from '@/components/map/MapView';
 import { Card, CardHeader } from '@/components/ui/Card';
 import { StatusBadge } from '@/components/ui/StatusBadge';
@@ -18,6 +16,15 @@ import {
   ArrowUpRightIcon,
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+
+/** Derive status counts from the live camera array */
+function getCameraStatusCounts(cameras: Camera[]) {
+  return {
+    online: cameras.filter((c) => c.status === 'online').length,
+    offline: cameras.filter((c) => c.status === 'offline').length,
+    total: cameras.length,
+  };
+}
 
 // Simulated live detection feed entries
 const mockLiveDetections = [
@@ -32,29 +39,10 @@ const mockLiveDetections = [
 
 export function LiveMapPage() {
   const navigate = useNavigate();
-  const [cameras, setCameras] = useState<CameraFeed[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  const loadCameras = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      const data = await fetchCameras();
-      setCameras(data);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to load cameras');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    loadCameras();
-  }, []);
+  const { cameras, loading, error, refetch } = useCameras();
 
   if (loading) return <LoadingState message="Initializing city-wide intelligence map..." />;
-  if (error) return <ErrorState message={error} onRetry={loadCameras} />;
+  if (error) return <ErrorState message={error} onRetry={refetch} />;
 
   const statusCounts = getCameraStatusCounts(cameras);
 
@@ -89,7 +77,7 @@ export function LiveMapPage() {
           />
 
           {/* Status Metrics Counters */}
-          <div className="grid grid-cols-3 gap-2.5 my-3">
+          <div className="grid grid-cols-2 gap-2.5 my-3">
             <div className="rounded-xl bg-emerald-500/10 border border-emerald-500/20 p-2.5 text-center">
               <p className="text-xl font-black text-emerald-400">{statusCounts.online}</p>
               <p className="mt-0.5 text-[9px] font-bold text-emerald-400/80 uppercase tracking-widest">Active</p>
@@ -97,10 +85,6 @@ export function LiveMapPage() {
             <div className="rounded-xl bg-rose-500/10 border border-rose-500/20 p-2.5 text-center">
               <p className="text-xl font-black text-rose-400">{statusCounts.offline}</p>
               <p className="mt-0.5 text-[9px] font-bold text-rose-400/80 uppercase tracking-widest">Offline</p>
-            </div>
-            <div className="rounded-xl bg-amber-500/10 border border-amber-500/20 p-2.5 text-center">
-              <p className="text-xl font-black text-amber-400">{statusCounts.maintenance}</p>
-              <p className="mt-0.5 text-[9px] font-bold text-amber-400/80 uppercase tracking-widest">Maint.</p>
             </div>
           </div>
 

@@ -1,0 +1,56 @@
+[
+  {
+    "camera_code": "IG-01",
+    "camera_name": "India Gate Junction",
+    "video_filename": "13052823_3840_2160_30fps.mp4",
+    "video_url": "https://ngwrbxiaeressvmhfopb.supabase.co/storage/v1/object/public/videos/13052823_3840_2160_30fps.mp4"
+  },
+  {
+    "camera_code": "CP-01",
+    "camera_name": "Connaught Place Circle",
+    "video_filename": "13067896_3840_2160_30fps.mp4",
+    "video_url": "https://ngwrbxiaeressvmhfopb.supabase.co/storage/v1/object/public/videos/13067896_3840_2160_30fps.mp4"
+  },
+  {
+    "camera_code": "KB-01",
+    "camera_name": "Karol Bagh Crossing",
+    "video_filename": "13105470_3840_2160_30fps.mp4",
+    "video_url": "https://ngwrbxiaeressvmhfopb.supabase.co/storage/v1/object/public/videos/13105470_3840_2160_30fps.mp4"
+  },
+  {
+    "camera_code": "LN-01",
+    "camera_name": "Lajpat Nagar Flyover",
+    "video_filename": "13172888_3840_2160_30fps.mp4",
+    "video_url": "https://ngwrbxiaeressvmhfopb.supabase.co/storage/v1/object/public/videos/13172888_3840_2160_30fps.mp4"
+  },
+  {
+    "camera_code": "AI-01",
+    "camera_name": "AIIMS T-Junction",
+    "video_filename": "13269027_3840_2160_30fps.mp4",
+    "video_url": "https://ngwrbxiaeressvmhfopb.supabase.co/storage/v1/object/public/videos/13269027_3840_2160_30fps.mp4"
+  },
+  {
+    "camera_code": "NP-01",
+    "camera_name": "Nehru Place Underpass",
+    "video_filename": "13269676_3840_2160_30fps.mp4",
+    "video_url": "https://ngwrbxiaeressvmhfopb.supabase.co/storage/v1/object/public/videos/13269676_3840_2160_30fps.mp4"
+  },
+  {
+    "camera_code": "CC-01",
+    "camera_name": "Chandni Chowk Gate",
+    "video_filename": "13270133_3840_2160_30fps.mp4",
+    "video_url": "https://ngwrbxiaeressvmhfopb.supabase.co/storage/v1/object/public/videos/13270133_3840_2160_30fps.mp4"
+  },
+  {
+    "camera_code": "DW-01",
+    "camera_name": "Dwarka Expressway Entry",
+    "video_filename": "13105476_3840_2160_30fps.mp4",
+    "video_url": "https://ngwrbxiaeressvmhfopb.supabase.co/storage/v1/object/public/videos/13105476_3840_2160_30fps.mp4"
+  },
+  {
+    "camera_code": "DK-01",
+    "camera_name": "Dhaula Kuan Interchange",
+    "video_filename": "13268898_3840_2160_30fps.mp4",
+    "video_url": "https://ngwrbxiaeressvmhfopb.supabase.co/storage/v1/object/public/videos/13268898_3840_2160_30fps.mp4"
+  }
+]

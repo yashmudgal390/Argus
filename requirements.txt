@@ -1,0 +1,16 @@
+# Python Dependencies for NERO Offline YOLOv7 Detection Pipeline
+# Install: pip install -r requirements.txt
+
+# Core inference & video I/O
+opencv-python>=4.8.0
+torch>=2.0.0
+torchvision>=0.15.0
+numpy>=1.24.0
+
+# Supabase bulk ingestion (insert_detections.py)
+supabase>=2.0.0
+python-dotenv>=1.0.0
+
+# Utilities
+requests>=2.31.0
+tqdm>=4.65.0

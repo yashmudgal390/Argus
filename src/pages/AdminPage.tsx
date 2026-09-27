@@ -4,7 +4,8 @@
 // ═══════════════════════════════════════════════════
 
 import { useEffect, useState } from 'react';
-import type { CameraFeed, BlacklistEntry, AlertPriority, WatchlistCategory } from '@/types';
+import type { BlacklistEntry, AlertPriority, WatchlistCategory } from '@/types';
+import type { Camera } from '@/types/camera';
 import { fetchCameras, fetchBlacklistEntries } from '@/lib/supabase';
 import { mockUsers, mockAuditLogs } from '@/data/mockAdmin';
 import { Card, CardHeader } from '@/components/ui/Card';
@@ -25,7 +26,7 @@ type AdminTab = 'cameras' | 'watchlist' | 'users' | 'audit';
 
 export function AdminPage() {
   const [activeTab, setActiveTab] = useState<AdminTab>('cameras');
-  const [cameras, setCameras] = useState<CameraFeed[]>([]);
+  const [cameras, setCameras] = useState<Camera[]>([]);
   const [watchlist, setWatchlist] = useState<BlacklistEntry[]>([]);
 
   const [loading, setLoading] = useState(true);
@@ -70,18 +71,17 @@ export function AdminPage() {
   const handleAddCamera = (e: React.FormEvent) => {
     e.preventDefault();
     if (!newCamName || !newCamCode) return;
-    const newCam: CameraFeed = {
+    const newCam: Camera = {
       id: `cam-00${cameras.length + 1}`,
       name: newCamName,
       code: newCamCode,
-      lat: 28.6100,
-      lng: 77.2000,
+      latitude: 28.6100,
+      longitude: 77.2000,
       zone: newCamZone,
       direction: 'North',
       status: 'online',
       video_url: '/videos/cam_001.mp4',
       created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString(),
     };
     setCameras([newCam, ...cameras]);
     setShowAddCameraModal(false);

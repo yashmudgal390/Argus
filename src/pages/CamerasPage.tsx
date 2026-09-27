@@ -4,9 +4,9 @@
 // Live Video Modal Player on Camera Click
 // ═══════════════════════════════════════════════════
 
-import { useEffect, useState } from 'react';
-import type { CameraFeed } from '@/types';
-import { fetchCameras } from '@/lib/supabase';
+import { useState } from 'react';
+import type { Camera } from '@/types/camera';
+import { useCameras } from '@/hooks/useCameras';
 import { mockDetections } from '@/data/mockDetections';
 import { Card } from '@/components/ui/Card';
 import { StatusBadge } from '@/components/ui/StatusBadge';
@@ -16,31 +16,21 @@ import { CameraVideoPlayer } from '@/components/video/CameraVideoPlayer';
 import { VideoIcon, XIcon, FilterIcon, CameraIcon, PlayIcon } from 'lucide-react';
 
 export function CamerasPage() {
-  const [cameras, setCameras] = useState<CameraFeed[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [selectedCamera, setSelectedCamera] = useState<CameraFeed | null>(null);
+  const { cameras, loading, error, refetch } = useCameras();
+  const [selectedCamera, setSelectedCamera] = useState<Camera | null>(null);
   const [selectedZone, setSelectedZone] = useState<string>('all');
 
-  const loadCameras = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      const data = await fetchCameras();
-      setCameras(data);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to load cameras');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    loadCameras();
-  }, []);
-
   if (loading) return <LoadingState message="Connecting to camera feeds..." />;
-  if (error) return <ErrorState message={error} onRetry={loadCameras} />;
+  if (error) return <ErrorState message={error} onRetry={refetch} />;
+  if (cameras.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center h-64 text-nero-text-muted">
+        <CameraIcon size={48} className="mb-4 opacity-40" />
+        <p className="text-sm font-medium">No cameras found</p>
+        <p className="text-xs mt-1">Check your Supabase connection or seed the cameras table.</p>
+      </div>
+    );
+  }
 
   const zones = ['all', ...new Set(cameras.map((c) => c.zone))];
   const filteredCameras = selectedZone === 'all'
@@ -62,8 +52,6 @@ export function CamerasPage() {
             Click any camera card to launch live video stream with synchronized YOLOv7 detections
           </p>
         </div>
-
-        {/* Videos are served from the public /videos folder */}
 
           {/* Zone Selector */}
           <div className="flex items-center gap-2 rounded-lg border border-nero-border bg-nero-surface px-3 py-1.5 text-xs">
@@ -110,19 +98,11 @@ export function CamerasPage() {
 
           <CameraVideoPlayer
             camera={selectedCamera}
-            detections={mockDetections[selectedCamera.id] || []}
-            onUpdateVideoUrl={(newUrl) => {
-              const updated = cameras.map((c) =>
-                c.id === selectedCamera.id ? { ...c, video_url: newUrl } : c
-              );
-              setCameras(updated);
-              setSelectedCamera({ ...selectedCamera, video_url: newUrl });
-            }}
           />
         </div>
       )}
 
-      {/* Minimal Camera Cards Grid (Images Removed per user request) */}
+      {/* Camera Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {filteredCameras.map((camera) => {
           const detCount = (mockDetections[camera.id] || []).length;

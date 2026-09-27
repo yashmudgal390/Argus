@@ -1,0 +1,83 @@
+[
+  {
+    "camera_code": "IG-01",
+    "video_filename": "13052823_3840_2160_30fps.mp4",
+    "total_frames_sampled": 101,
+    "total_detections": 3413,
+    "unique_tracked_vehicles": 1572,
+    "video_duration_sec": 20.2,
+    "average_confidence": 0.868
+  },
+  {
+    "camera_code": "CP-01",
+    "video_filename": "13067896_3840_2160_30fps.mp4",
+    "total_frames_sampled": 62,
+    "total_detections": 5251,
+    "unique_tracked_vehicles": 1684,
+    "video_duration_sec": 12.37,
+    "average_confidence": 0.854
+  },
+  {
+    "camera_code": "KB-01",
+    "video_filename": "13105470_3840_2160_30fps.mp4",
+    "total_frames_sampled": 296,
+    "total_detections": 8153,
+    "unique_tracked_vehicles": 5007,
+    "video_duration_sec": 59.2,
+    "average_confidence": 0.879
+  },
+  {
+    "camera_code": "LN-01",
+    "video_filename": "13172888_3840_2160_30fps.mp4",
+    "total_frames_sampled": 119,
+    "total_detections": 8280,
+    "unique_tracked_vehicles": 2651,
+    "video_duration_sec": 23.7,
+    "average_confidence": 0.849
+  },
+  {
+    "camera_code": "AI-01",
+    "video_filename": "13269027_3840_2160_30fps.mp4",
+    "total_frames_sampled": 50,
+    "total_detections": 4897,
+    "unique_tracked_vehicles": 1664,
+    "video_duration_sec": 9.97,
+    "average_confidence": 0.841
+  },
+  {
+    "camera_code": "NP-01",
+    "video_filename": "13269676_3840_2160_30fps.mp4",
+    "total_frames_sampled": 103,
+    "total_detections": 1720,
+    "unique_tracked_vehicles": 483,
+    "video_duration_sec": 20.43,
+    "average_confidence": 0.862
+  },
+  {
+    "camera_code": "CC-01",
+    "video_filename": "13270133_3840_2160_30fps.mp4",
+    "total_frames_sampled": 286,
+    "total_detections": 16360,
+    "unique_tracked_vehicles": 6865,
+    "video_duration_sec": 57.2,
+    "average_confidence": 0.859
+  },
+  {
+    "camera_code": "DW-01",
+    "video_filename": "13105476_3840_2160_30fps.mp4",
+    "total_frames_sampled": 600,
+    "total_detections": 25863,
+    "unique_tracked_vehicles": 9102,
+    "video_duration_sec": 119.97,
+    "average_confidence": 0.88
+  },
+  {
+    "camera_code": "DK-01",
+    "video_filename": "13268898_3840_2160_30fps.mp4",
+    "total_frames_sampled": 103,
+    "total_detections": 7971,
+    "unique_tracked_vehicles": 2775,
+    "video_duration_sec": 20.5,
+    "average_confidence": 0.853
+  }
+]
