@@ -14,7 +14,7 @@ interface CameraVideoPlayerProps {
   detections?: Detection[];
 }
 
-const PRIMARY_CDN_FALLBACK = 'https://vjs.zencdn.net/v/oceans.mp4';
+const PRIMARY_CDN_FALLBACK = 'https://ngwrbxiaeressvmhfopb.supabase.co/storage/v1/object/public/videos/13052823_3840_2160_30fps.mp4';
 
 /**
  * Determine the streamable video source URL.
@@ -24,7 +24,7 @@ function resolveVideoSrc(videoUrl: string): string {
   if (videoUrl.startsWith('http://') || videoUrl.startsWith('https://')) {
     return videoUrl;
   }
-  return videoUrl;
+  return PRIMARY_CDN_FALLBACK;
 }
 
 export function CameraVideoPlayer({ camera, detections: propDetections }: CameraVideoPlayerProps) {

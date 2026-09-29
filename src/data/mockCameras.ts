@@ -1,11 +1,10 @@
 // ═══════════════════════════════════════════════════
-// Mock Camera Data — 9 Virtual Cameras linked to high-performance CORS CDN streaming videos
+// Mock Camera Data — 9 Virtual Cameras linked to Supabase Storage Traffic Videos
+// Reads directly from Supabase Storage Public Bucket:
+// https://ngwrbxiaeressvmhfopb.supabase.co/storage/v1/object/public/videos/
 // ═══════════════════════════════════════════════════
 
 import type { CameraFeed } from '@/types';
-
-const CDN_STREAM_1 = 'https://vjs.zencdn.net/v/oceans.mp4';
-const CDN_STREAM_2 = 'https://media.w3.org/2010/05/sintel/trailer_hd.mp4';
 
 export const mockCameras: CameraFeed[] = [
   {
@@ -17,7 +16,7 @@ export const mockCameras: CameraFeed[] = [
     zone: 'Central Delhi',
     direction: 'Northbound',
     status: 'online',
-    video_url: CDN_STREAM_1,
+    video_url: 'https://ngwrbxiaeressvmhfopb.supabase.co/storage/v1/object/public/videos/13052823_3840_2160_30fps.mp4',
     thumbnail_url: '',
     created_at: '2026-01-15T08:00:00Z',
     updated_at: '2026-09-26T00:00:00Z',
@@ -31,7 +30,7 @@ export const mockCameras: CameraFeed[] = [
     zone: 'Central Delhi',
     direction: 'Outer Ring East',
     status: 'online',
-    video_url: CDN_STREAM_2,
+    video_url: 'https://ngwrbxiaeressvmhfopb.supabase.co/storage/v1/object/public/videos/13067896_3840_2160_30fps.mp4',
     thumbnail_url: '',
     created_at: '2026-01-15T08:00:00Z',
     updated_at: '2026-09-26T00:00:00Z',
@@ -45,7 +44,7 @@ export const mockCameras: CameraFeed[] = [
     zone: 'West Delhi',
     direction: 'Pusa Road South',
     status: 'online',
-    video_url: CDN_STREAM_1,
+    video_url: 'https://ngwrbxiaeressvmhfopb.supabase.co/storage/v1/object/public/videos/13105470_3840_2160_30fps.mp4',
     thumbnail_url: '',
     created_at: '2026-01-15T08:00:00Z',
     updated_at: '2026-09-26T00:00:00Z',
@@ -59,7 +58,7 @@ export const mockCameras: CameraFeed[] = [
     zone: 'South Delhi',
     direction: 'Ring Road West',
     status: 'online',
-    video_url: CDN_STREAM_2,
+    video_url: 'https://ngwrbxiaeressvmhfopb.supabase.co/storage/v1/object/public/videos/13172888_3840_2160_30fps.mp4',
     thumbnail_url: '',
     created_at: '2026-01-15T08:00:00Z',
     updated_at: '2026-09-26T00:00:00Z',
@@ -73,7 +72,7 @@ export const mockCameras: CameraFeed[] = [
     zone: 'South Delhi',
     direction: 'Aurobindo Marg North',
     status: 'online',
-    video_url: CDN_STREAM_1,
+    video_url: 'https://ngwrbxiaeressvmhfopb.supabase.co/storage/v1/object/public/videos/13269027_3840_2160_30fps.mp4',
     thumbnail_url: '',
     created_at: '2026-01-15T08:00:00Z',
     updated_at: '2026-09-26T00:00:00Z',
@@ -87,7 +86,7 @@ export const mockCameras: CameraFeed[] = [
     zone: 'South Delhi',
     direction: 'Outer Ring East',
     status: 'online',
-    video_url: CDN_STREAM_2,
+    video_url: 'https://ngwrbxiaeressvmhfopb.supabase.co/storage/v1/object/public/videos/13269676_3840_2160_30fps.mp4',
     thumbnail_url: '',
     created_at: '2026-01-15T08:00:00Z',
     updated_at: '2026-09-26T00:00:00Z',
@@ -101,7 +100,7 @@ export const mockCameras: CameraFeed[] = [
     zone: 'Old Delhi',
     direction: 'Main Arterial South',
     status: 'online',
-    video_url: CDN_STREAM_1,
+    video_url: 'https://ngwrbxiaeressvmhfopb.supabase.co/storage/v1/object/public/videos/13270133_3840_2160_30fps.mp4',
     thumbnail_url: '',
     created_at: '2026-01-15T08:00:00Z',
     updated_at: '2026-09-26T00:00:00Z',
@@ -115,7 +114,7 @@ export const mockCameras: CameraFeed[] = [
     zone: 'West Delhi',
     direction: 'Expressway North',
     status: 'online',
-    video_url: CDN_STREAM_2,
+    video_url: 'https://ngwrbxiaeressvmhfopb.supabase.co/storage/v1/object/public/videos/13105476_3840_2160_30fps.mp4',
     thumbnail_url: '',
     created_at: '2026-01-15T08:00:00Z',
     updated_at: '2026-09-26T00:00:00Z',
@@ -129,7 +128,7 @@ export const mockCameras: CameraFeed[] = [
     zone: 'South West Delhi',
     direction: 'Ring Road Southbound',
     status: 'online',
-    video_url: CDN_STREAM_1,
+    video_url: 'https://ngwrbxiaeressvmhfopb.supabase.co/storage/v1/object/public/videos/13268898_3840_2160_30fps.mp4',
     thumbnail_url: '',
     created_at: '2026-01-15T08:00:00Z',
     updated_at: '2026-09-26T00:00:00Z',

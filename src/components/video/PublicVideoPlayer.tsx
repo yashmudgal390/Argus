@@ -7,7 +7,7 @@ interface PublicVideoPlayerProps {
   className?: string;
 }
 
-const PRIMARY_CDN_FALLBACK = 'https://vjs.zencdn.net/v/oceans.mp4';
+const PRIMARY_CDN_FALLBACK = 'https://ngwrbxiaeressvmhfopb.supabase.co/storage/v1/object/public/videos/13052823_3840_2160_30fps.mp4';
 
 export const PublicVideoPlayer: React.FC<PublicVideoPlayerProps> = ({
   src,

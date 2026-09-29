@@ -28,6 +28,30 @@ function cameraFeedToCamera(feed: CameraFeed): Camera {
   };
 }
 
+const SUPABASE_STORAGE_BASE = 'https://ngwrbxiaeressvmhfopb.supabase.co/storage/v1/object/public/videos/';
+
+const CODE_TO_FILENAME: Record<string, string> = {
+  'IG-01': '13052823_3840_2160_30fps.mp4',
+  'CP-01': '13067896_3840_2160_30fps.mp4',
+  'KB-01': '13105470_3840_2160_30fps.mp4',
+  'LN-01': '13172888_3840_2160_30fps.mp4',
+  'AI-01': '13269027_3840_2160_30fps.mp4',
+  'NP-01': '13269676_3840_2160_30fps.mp4',
+  'CC-01': '13270133_3840_2160_30fps.mp4',
+  'DW-01': '13105476_3840_2160_30fps.mp4',
+  'DK-01': '13268898_3840_2160_30fps.mp4',
+};
+
+function resolveSupabaseVideoUrl(url: string, code?: string): string {
+  if (url && (url.startsWith('http://') || url.startsWith('https://'))) {
+    return url;
+  }
+  if (code && CODE_TO_FILENAME[code]) {
+    return `${SUPABASE_STORAGE_BASE}${CODE_TO_FILENAME[code]}`;
+  }
+  return `${SUPABASE_STORAGE_BASE}13052823_3840_2160_30fps.mp4`;
+}
+
 /**
  * Map a raw Supabase row into the canonical `Camera` type.
  * The DB columns are `lat` and `lng`; we normalise to `latitude` / `longitude`.
@@ -43,7 +67,7 @@ function rowToCamera(row: any): Camera {
     zone: row.zone,
     direction: row.direction,
     status: row.status,
-    video_url: row.video_url,
+    video_url: resolveSupabaseVideoUrl(row.video_url, row.code),
     created_at: row.created_at,
   };
 }
