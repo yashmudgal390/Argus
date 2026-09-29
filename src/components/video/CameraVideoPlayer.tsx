@@ -1,6 +1,6 @@
 // ═══════════════════════════════════════════════════
 // CameraVideoPlayer Component
-// Pure CCTV Video Feed with robust CORS & CDN video playback
+// Pure CCTV Video Feed with robust CORS & Supabase Storage video playback
 // ═══════════════════════════════════════════════════
 
 import { useRef, useEffect } from 'react';
@@ -8,23 +8,11 @@ import type { Camera } from '@/types/camera';
 import type { Detection } from '@/types';
 import { useDetectionOverlay } from '@/hooks/useDetectionOverlay';
 import { useCameraDetections } from '@/hooks/useCameraDetections';
+import { resolveSupabaseVideoUrl } from '@/lib/supabase/cameras';
 
 interface CameraVideoPlayerProps {
   camera: Camera;
   detections?: Detection[];
-}
-
-const PRIMARY_CDN_FALLBACK = 'https://ngwrbxiaeressvmhfopb.supabase.co/storage/v1/object/public/videos/13052823_3840_2160_30fps.mp4';
-
-/**
- * Determine the streamable video source URL.
- */
-function resolveVideoSrc(videoUrl: string): string {
-  if (!videoUrl) return PRIMARY_CDN_FALLBACK;
-  if (videoUrl.startsWith('http://') || videoUrl.startsWith('https://')) {
-    return videoUrl;
-  }
-  return PRIMARY_CDN_FALLBACK;
 }
 
 export function CameraVideoPlayer({ camera, detections: propDetections }: CameraVideoPlayerProps) {
@@ -35,7 +23,8 @@ export function CameraVideoPlayer({ camera, detections: propDetections }: Camera
   const { detections: realDetections } = useCameraDetections(camera.code, camera.id);
   const activeDetections = (propDetections && propDetections.length > 0) ? propDetections : realDetections;
 
-  const videoSrc = resolveVideoSrc(camera.video_url);
+  const videoSrc = resolveSupabaseVideoUrl(camera.video_url, camera.code, camera.id);
+  const fallbackSrc = resolveSupabaseVideoUrl('', camera.code, camera.id);
 
   // Sync green bounding box canvas overlay with video timeline
   useDetectionOverlay(videoRef, canvasRef, activeDetections);
@@ -65,10 +54,10 @@ export function CameraVideoPlayer({ camera, detections: propDetections }: Camera
           crossOrigin="anonymous"
           onError={(e) => {
             const target = e.currentTarget;
-            if (target.src !== PRIMARY_CDN_FALLBACK) {
-              console.warn(`Video ${target.src} failed to load. Falling back to CORS-enabled CDN stream.`);
+            if (target.src !== fallbackSrc) {
+              console.warn(`Video load error for camera ${camera.code}. Falling back to unique Supabase video URL.`);
               target.muted = true;
-              target.src = PRIMARY_CDN_FALLBACK;
+              target.src = fallbackSrc;
               target.load();
               target.play().catch(() => {});
             }
