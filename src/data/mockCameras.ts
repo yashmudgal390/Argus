@@ -1,6 +1,5 @@
 // ═══════════════════════════════════════════════════
-// Mock Camera Data — 9 Virtual Cameras linked to local public videos
-// Videos served from public/videos/ folder
+// Mock Camera Data — 9 Virtual Cameras linked to high-quality streaming videos
 // ═══════════════════════════════════════════════════
 
 import type { CameraFeed } from '@/types';
@@ -15,7 +14,7 @@ export const mockCameras: CameraFeed[] = [
     zone: 'Central Delhi',
     direction: 'Northbound',
     status: 'online',
-    video_url: '/videos/13052823_3840_2160_30fps.mp4',
+    video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnTheStreet.mp4',
     thumbnail_url: '',
     created_at: '2026-01-15T08:00:00Z',
     updated_at: '2026-09-26T00:00:00Z',
@@ -29,7 +28,7 @@ export const mockCameras: CameraFeed[] = [
     zone: 'Central Delhi',
     direction: 'Outer Ring East',
     status: 'online',
-    video_url: '/videos/13067896_3840_2160_30fps.mp4',
+    video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
     thumbnail_url: '',
     created_at: '2026-01-15T08:00:00Z',
     updated_at: '2026-09-26T00:00:00Z',
@@ -43,7 +42,7 @@ export const mockCameras: CameraFeed[] = [
     zone: 'West Delhi',
     direction: 'Pusa Road South',
     status: 'online',
-    video_url: '/videos/13105470_3840_2160_30fps.mp4',
+    video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
     thumbnail_url: '',
     created_at: '2026-01-15T08:00:00Z',
     updated_at: '2026-09-26T00:00:00Z',
@@ -57,7 +56,7 @@ export const mockCameras: CameraFeed[] = [
     zone: 'South Delhi',
     direction: 'Ring Road West',
     status: 'online',
-    video_url: '/videos/13172888_3840_2160_30fps.mp4',
+    video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
     thumbnail_url: '',
     created_at: '2026-01-15T08:00:00Z',
     updated_at: '2026-09-26T00:00:00Z',
@@ -71,7 +70,7 @@ export const mockCameras: CameraFeed[] = [
     zone: 'South Delhi',
     direction: 'Aurobindo Marg North',
     status: 'online',
-    video_url: '/videos/13269027_3840_2160_30fps.mp4',
+    video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoylikes.mp4',
     thumbnail_url: '',
     created_at: '2026-01-15T08:00:00Z',
     updated_at: '2026-09-26T00:00:00Z',
@@ -85,7 +84,7 @@ export const mockCameras: CameraFeed[] = [
     zone: 'South Delhi',
     direction: 'Outer Ring East',
     status: 'online',
-    video_url: '/videos/13269676_3840_2160_30fps.mp4',
+    video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4',
     thumbnail_url: '',
     created_at: '2026-01-15T08:00:00Z',
     updated_at: '2026-09-26T00:00:00Z',
@@ -99,7 +98,7 @@ export const mockCameras: CameraFeed[] = [
     zone: 'Old Delhi',
     direction: 'Main Arterial South',
     status: 'online',
-    video_url: '/videos/13270133_3840_2160_30fps.mp4',
+    video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4',
     thumbnail_url: '',
     created_at: '2026-01-15T08:00:00Z',
     updated_at: '2026-09-26T00:00:00Z',
@@ -113,7 +112,7 @@ export const mockCameras: CameraFeed[] = [
     zone: 'West Delhi',
     direction: 'Expressway North',
     status: 'online',
-    video_url: '/videos/13105476_3840_2160_30fps.mp4',
+    video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4',
     thumbnail_url: '',
     created_at: '2026-01-15T08:00:00Z',
     updated_at: '2026-09-26T00:00:00Z',
@@ -127,7 +126,7 @@ export const mockCameras: CameraFeed[] = [
     zone: 'South West Delhi',
     direction: 'Ring Road Southbound',
     status: 'online',
-    video_url: '/videos/13268898_3840_2160_30fps.mp4',
+    video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4',
     thumbnail_url: '',
     created_at: '2026-01-15T08:00:00Z',
     updated_at: '2026-09-26T00:00:00Z',

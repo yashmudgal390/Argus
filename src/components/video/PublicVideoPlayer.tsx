@@ -7,13 +7,8 @@ interface PublicVideoPlayerProps {
   className?: string;
 }
 
-/**
- * A premium video player for streaming videos from the public folder.
- * - No timeline scrubber is shown (controls are hidden).
- * - No zoom functionality; the video fills its container with object-fit: contain.
- * - Loops indefinitely.
- * - Autoplay and optional mute for seamless playback.
- */
+const DEFAULT_CDN_FALLBACK = 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnTheStreet.mp4';
+
 export const PublicVideoPlayer: React.FC<PublicVideoPlayerProps> = ({
   src,
   muted = true,
@@ -22,14 +17,19 @@ export const PublicVideoPlayer: React.FC<PublicVideoPlayerProps> = ({
 }) => {
   return (
     <video
-      src={src}
+      src={src || DEFAULT_CDN_FALLBACK}
       muted={muted}
       autoPlay={autoPlay}
       loop
       playsInline
-      // Hide native controls to remove timeline and zoom UI
       controls={false}
-      // Prevent user from right‑clicking to download or open in new tab
+      onError={(e) => {
+        const target = e.currentTarget;
+        if (target.src !== DEFAULT_CDN_FALLBACK) {
+          target.src = DEFAULT_CDN_FALLBACK;
+          target.play().catch(() => {});
+        }
+      }}
       onContextMenu={(e) => e.preventDefault()}
       className={`w-full h-full object-contain ${className}`}
     />

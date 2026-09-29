@@ -1,7 +1,7 @@
 // ═══════════════════════════════════════════════════
 // CameraVideoPlayer Component
 // Pure CCTV Video Feed — streams video_url from Supabase
-// or local public folder. Zero timeline, zero controls.
+// or CDN streaming video. Zero timeline, zero controls.
 // ═══════════════════════════════════════════════════
 
 import { useRef } from 'react';
@@ -15,22 +15,16 @@ interface CameraVideoPlayerProps {
   detections?: Detection[];
 }
 
+const DEFAULT_CDN_FALLBACK = 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnTheStreet.mp4';
+
 /**
  * Determine the streamable video source URL.
- *
- * Priority:
- * 1. If `video_url` is already a full URL (http/https) — use it directly
- *    (covers Supabase Storage URLs and any other remote source).
- * 2. If it's a relative path (e.g. `/videos/...`) — use as-is (Vite public dir).
- * 3. Fallback to empty string (no video).
  */
 function resolveVideoSrc(videoUrl: string): string {
-  if (!videoUrl) return '';
-  // Full URLs (Supabase Storage, CDN, etc.)
+  if (!videoUrl) return DEFAULT_CDN_FALLBACK;
   if (videoUrl.startsWith('http://') || videoUrl.startsWith('https://')) {
     return videoUrl;
   }
-  // Relative paths served by Vite from /public
   return videoUrl;
 }
 
@@ -59,6 +53,14 @@ export function CameraVideoPlayer({ camera, detections: propDetections }: Camera
           muted
           playsInline
           controls={false}
+          onError={(e) => {
+            // Auto fallback to reliable CDN video if local file fails to load
+            const target = e.currentTarget;
+            if (target.src !== DEFAULT_CDN_FALLBACK) {
+              target.src = DEFAULT_CDN_FALLBACK;
+              target.play().catch(() => {});
+            }
+          }}
           className="w-full h-full object-contain pointer-events-none select-none"
         />
         {/* Detection overlay canvas */}
