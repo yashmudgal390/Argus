@@ -40,13 +40,15 @@ export interface CameraFeed {
 export interface Detection {
   event_id: string;
   camera_id: string;
+  tracked_vehicle_id?: number | string;
   plate_text_raw: string;
   plate_text_normalized: string;
   confidence_score: number;
   vehicle_type: VehicleType;
-  timestamp: string;
-  lat: number;
-  lng: number;
+  timestamp: string | number;
+  frame_timestamp_sec?: number;
+  lat?: number;
+  lng?: number;
   bbox: BoundingBox;
   image_ref?: string;
 }
