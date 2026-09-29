@@ -14,12 +14,12 @@ export const SUPABASE_STORAGE_BASE = 'https://ngwrbxiaeressvmhfopb.supabase.co/s
 export const CAMERA_VIDEOS: { code: string; aliases: string[]; filename: string }[] = [
   { code: 'IG-01', aliases: ['cam-001', 'cam_001', 'ig-01', 'cam-a'], filename: '13052823_3840_2160_30fps.mp4' },
   { code: 'CP-01', aliases: ['cam-002', 'cam_002', 'cp-01', 'cam-b'], filename: '13067896_3840_2160_30fps.mp4' },
-  { code: 'KB-01', aliases: ['cam-003', 'cam_003', 'kb-01', 'cam-c'], filename: '13105470_3840_2160_30fps.mp4' },
+  { code: 'KB-01', aliases: ['cam-003', 'cam_003', 'kb-01', 'cam-c'], filename: '13268898_3840_2160_30fps.mp4' },
   { code: 'LN-01', aliases: ['cam-004', 'cam_004', 'ln-01', 'cam-d'], filename: '13172888_3840_2160_30fps.mp4' },
   { code: 'AI-01', aliases: ['cam-005', 'cam_005', 'ai-01', 'cam-e'], filename: '13269027_3840_2160_30fps.mp4' },
   { code: 'NP-01', aliases: ['cam-006', 'cam_006', 'np-01', 'cam-f'], filename: '13269676_3840_2160_30fps.mp4' },
-  { code: 'CC-01', aliases: ['cam-007', 'cam_007', 'cc-01', 'cam-g'], filename: '13270133_3840_2160_30fps.mp4' },
-  { code: 'DW-01', aliases: ['cam-008', 'cam_008', 'dw-01', 'cam-h'], filename: '13105476_3840_2160_30fps.mp4' },
+  { code: 'CC-01', aliases: ['cam-007', 'cam_007', 'cc-01', 'cam-g'], filename: '13052823_3840_2160_30fps.mp4' },
+  { code: 'DW-01', aliases: ['cam-008', 'cam_008', 'dw-01', 'cam-h'], filename: '13067896_3840_2160_30fps.mp4' },
   { code: 'DK-01', aliases: ['cam-009', 'cam_009', 'dk-01', 'cam-i'], filename: '13268898_3840_2160_30fps.mp4' },
 ];
 
