@@ -1,10 +1,9 @@
 // ═══════════════════════════════════════════════════
 // CameraVideoPlayer Component
-// Pure CCTV Video Feed — streams video_url from Supabase
-// or CDN streaming video. Zero timeline, zero controls.
+// Pure CCTV Video Feed with robust CORS & CDN video playback
 // ═══════════════════════════════════════════════════
 
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import type { Camera } from '@/types/camera';
 import type { Detection } from '@/types';
 import { useDetectionOverlay } from '@/hooks/useDetectionOverlay';
@@ -15,13 +14,13 @@ interface CameraVideoPlayerProps {
   detections?: Detection[];
 }
 
-const DEFAULT_CDN_FALLBACK = 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnTheStreet.mp4';
+const PRIMARY_CDN_FALLBACK = 'https://vjs.zencdn.net/v/oceans.mp4';
 
 /**
  * Determine the streamable video source URL.
  */
 function resolveVideoSrc(videoUrl: string): string {
-  if (!videoUrl) return DEFAULT_CDN_FALLBACK;
+  if (!videoUrl) return PRIMARY_CDN_FALLBACK;
   if (videoUrl.startsWith('http://') || videoUrl.startsWith('https://')) {
     return videoUrl;
   }
@@ -41,6 +40,16 @@ export function CameraVideoPlayer({ camera, detections: propDetections }: Camera
   // Sync green bounding box canvas overlay with video timeline
   useDetectionOverlay(videoRef, canvasRef, activeDetections);
 
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.muted = true;
+      video.play().catch((err) => {
+        console.warn('Autoplay prevented or video play error:', err);
+      });
+    }
+  }, [videoSrc]);
+
   return (
     <div className="w-full h-full flex flex-col items-center justify-center">
       {/* Video Container — Fullscreen video without controls, looping */}
@@ -53,11 +62,14 @@ export function CameraVideoPlayer({ camera, detections: propDetections }: Camera
           muted
           playsInline
           controls={false}
+          crossOrigin="anonymous"
           onError={(e) => {
-            // Auto fallback to reliable CDN video if local file fails to load
             const target = e.currentTarget;
-            if (target.src !== DEFAULT_CDN_FALLBACK) {
-              target.src = DEFAULT_CDN_FALLBACK;
+            if (target.src !== PRIMARY_CDN_FALLBACK) {
+              console.warn(`Video ${target.src} failed to load. Falling back to CORS-enabled CDN stream.`);
+              target.muted = true;
+              target.src = PRIMARY_CDN_FALLBACK;
+              target.load();
               target.play().catch(() => {});
             }
           }}

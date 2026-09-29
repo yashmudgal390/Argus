@@ -1,8 +1,11 @@
 // ═══════════════════════════════════════════════════
-// Mock Camera Data — 9 Virtual Cameras linked to high-quality streaming videos
+// Mock Camera Data — 9 Virtual Cameras linked to high-performance CORS CDN streaming videos
 // ═══════════════════════════════════════════════════
 
 import type { CameraFeed } from '@/types';
+
+const CDN_STREAM_1 = 'https://vjs.zencdn.net/v/oceans.mp4';
+const CDN_STREAM_2 = 'https://media.w3.org/2010/05/sintel/trailer_hd.mp4';
 
 export const mockCameras: CameraFeed[] = [
   {
@@ -14,7 +17,7 @@ export const mockCameras: CameraFeed[] = [
     zone: 'Central Delhi',
     direction: 'Northbound',
     status: 'online',
-    video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnTheStreet.mp4',
+    video_url: CDN_STREAM_1,
     thumbnail_url: '',
     created_at: '2026-01-15T08:00:00Z',
     updated_at: '2026-09-26T00:00:00Z',
@@ -28,7 +31,7 @@ export const mockCameras: CameraFeed[] = [
     zone: 'Central Delhi',
     direction: 'Outer Ring East',
     status: 'online',
-    video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+    video_url: CDN_STREAM_2,
     thumbnail_url: '',
     created_at: '2026-01-15T08:00:00Z',
     updated_at: '2026-09-26T00:00:00Z',
@@ -42,7 +45,7 @@ export const mockCameras: CameraFeed[] = [
     zone: 'West Delhi',
     direction: 'Pusa Road South',
     status: 'online',
-    video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+    video_url: CDN_STREAM_1,
     thumbnail_url: '',
     created_at: '2026-01-15T08:00:00Z',
     updated_at: '2026-09-26T00:00:00Z',
@@ -56,7 +59,7 @@ export const mockCameras: CameraFeed[] = [
     zone: 'South Delhi',
     direction: 'Ring Road West',
     status: 'online',
-    video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
+    video_url: CDN_STREAM_2,
     thumbnail_url: '',
     created_at: '2026-01-15T08:00:00Z',
     updated_at: '2026-09-26T00:00:00Z',
@@ -70,7 +73,7 @@ export const mockCameras: CameraFeed[] = [
     zone: 'South Delhi',
     direction: 'Aurobindo Marg North',
     status: 'online',
-    video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoylikes.mp4',
+    video_url: CDN_STREAM_1,
     thumbnail_url: '',
     created_at: '2026-01-15T08:00:00Z',
     updated_at: '2026-09-26T00:00:00Z',
@@ -84,7 +87,7 @@ export const mockCameras: CameraFeed[] = [
     zone: 'South Delhi',
     direction: 'Outer Ring East',
     status: 'online',
-    video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4',
+    video_url: CDN_STREAM_2,
     thumbnail_url: '',
     created_at: '2026-01-15T08:00:00Z',
     updated_at: '2026-09-26T00:00:00Z',
@@ -98,7 +101,7 @@ export const mockCameras: CameraFeed[] = [
     zone: 'Old Delhi',
     direction: 'Main Arterial South',
     status: 'online',
-    video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4',
+    video_url: CDN_STREAM_1,
     thumbnail_url: '',
     created_at: '2026-01-15T08:00:00Z',
     updated_at: '2026-09-26T00:00:00Z',
@@ -112,7 +115,7 @@ export const mockCameras: CameraFeed[] = [
     zone: 'West Delhi',
     direction: 'Expressway North',
     status: 'online',
-    video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4',
+    video_url: CDN_STREAM_2,
     thumbnail_url: '',
     created_at: '2026-01-15T08:00:00Z',
     updated_at: '2026-09-26T00:00:00Z',
@@ -126,7 +129,7 @@ export const mockCameras: CameraFeed[] = [
     zone: 'South West Delhi',
     direction: 'Ring Road Southbound',
     status: 'online',
-    video_url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4',
+    video_url: CDN_STREAM_1,
     thumbnail_url: '',
     created_at: '2026-01-15T08:00:00Z',
     updated_at: '2026-09-26T00:00:00Z',

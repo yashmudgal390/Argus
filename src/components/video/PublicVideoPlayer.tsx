@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 interface PublicVideoPlayerProps {
   src: string;
@@ -7,7 +7,7 @@ interface PublicVideoPlayerProps {
   className?: string;
 }
 
-const DEFAULT_CDN_FALLBACK = 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnTheStreet.mp4';
+const PRIMARY_CDN_FALLBACK = 'https://vjs.zencdn.net/v/oceans.mp4';
 
 export const PublicVideoPlayer: React.FC<PublicVideoPlayerProps> = ({
   src,
@@ -15,18 +15,35 @@ export const PublicVideoPlayer: React.FC<PublicVideoPlayerProps> = ({
   autoPlay = true,
   className = '',
 }) => {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const activeSrc = src || PRIMARY_CDN_FALLBACK;
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.muted = muted;
+      if (autoPlay) {
+        video.play().catch(() => {});
+      }
+    }
+  }, [activeSrc, muted, autoPlay]);
+
   return (
     <video
-      src={src || DEFAULT_CDN_FALLBACK}
+      ref={videoRef}
+      src={activeSrc}
       muted={muted}
       autoPlay={autoPlay}
       loop
       playsInline
       controls={false}
+      crossOrigin="anonymous"
       onError={(e) => {
         const target = e.currentTarget;
-        if (target.src !== DEFAULT_CDN_FALLBACK) {
-          target.src = DEFAULT_CDN_FALLBACK;
+        if (target.src !== PRIMARY_CDN_FALLBACK) {
+          target.muted = true;
+          target.src = PRIMARY_CDN_FALLBACK;
+          target.load();
           target.play().catch(() => {});
         }
       }}
